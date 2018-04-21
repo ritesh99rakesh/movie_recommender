@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Movie Parameter{% endblock %}
+{% block upload_load_css %}
+<link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontello-2f186091/css/fontello.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+   <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style type="text/css">
+      .row
+      {
+        padding: 20px;
+      }
+
+      body
+      {
+        background-image: url("{% static 'img/background_images/2.jpg'%}");
+        background-size: cover;
+      }
+      h2
+      {
+        color: white;
+      }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4">
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+    <div class="card mb-3">
+              <div class="card-body">
+        <h1 align="center">Movie Recommender App</h1>
+        <ul id='movie'></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <script>
+        var array_movies = {{movie_array|safe}};
+        var no_of_movie = {{no_of_movie}};
+        for(var i = 0; i<no_of_movie; i++)
+        {
+          var ul = document.getElementById("movie");
+          var li = document.createElement("li");
+          var aTag = document.createElement('a');
+          aTag.setAttribute('href',"https://www.youtube.com/results?search_query="+array_movies[i]+" trailer");
+          aTag.textContent = array_movies[i];
+          li.appendChild(aTag);
+          ul.appendChild(li);
+        }
+    
+    </script>
+  {% endblock %}
